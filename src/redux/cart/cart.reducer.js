@@ -1,5 +1,5 @@
 import CartActionTypes from './cart.types';
-import { addItemToCart, removeItemFromCart } from './cart.utils';
+import { removeItemFromCart } from '../../graphql/cart.utils';
 
 const INITIAL_STATE = {
   hidden: true,
@@ -12,11 +12,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         hidden: !state.hidden
-      };
-    case CartActionTypes.ADD_ITEM:
-      return {
-        ...state,
-        cartItems: addItemToCart(state.cartItems, action.payload)
       };
     case CartActionTypes.REMOVE_ITEM:
       return {
