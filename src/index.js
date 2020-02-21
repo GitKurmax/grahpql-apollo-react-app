@@ -10,6 +10,7 @@ import { ApolloClient } from 'apollo-boost';
 import { resolvers, typeDefs } from './graphql/resolvers';
  
 import { store, persistor } from './redux/store';
+import { gql } from "apollo-boost"
 
 import './index.css';
 import App from './App';
@@ -36,6 +37,21 @@ client.writeData({
     total: 0
   }
 })
+
+client.query({
+    query: gql`
+      {
+        collections{
+          items{
+           collection{
+             title
+           }
+         }	
+        }
+      }
+    `
+  })
+  .then(result => console.log(result));
 
 ReactDOM.render(
   <ApolloProvider client={client}>
